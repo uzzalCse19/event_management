@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-white p-6 rounded shadow max-w-2xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">
+        {% if form.instance.pk %}
+            Update Event
+        {% else %}
+            Create Event
+        {% endif %}
+    </h1>
+    <form method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% csrf_token %}
+        
+        {% comment %} Name  {% endcomment %}
+
+        <div class="mb-4">
+            <label class="block text-gray-700">Name <span class="text-red-500">*</span></label>
+            <input type="text" name="name" value="{{ form.name.value|default:'' }}" placeholder="Enter event name" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            {% if form.name.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.name.errors }}
+                </div>
+            {% endif %}
+        </div>
+         {% comment %} description  {% endcomment %}
+        <div class="mb-4">
+            <label class="block text-gray-700">Description</label>
+            <textarea name="description" placeholder="Enter event description" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4">{{ form.description.value|default:'' }}</textarea>
+            <p class="text-gray-500 text-sm mt-1">Provide a detailed description of the event.</p>
+            {% if form.description.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.description.errors }}
+                </div>
+            {% endif %}
+        </div>
+   {% comment %} Date Field  {% endcomment %}
+        <div class="mb-4">
+            <label class="block text-gray-700">Date <span class="text-red-500">*</span></label>
+            <input type="date" name="date" value="{{ form.date.value|default:'' }}" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            {% if form.date.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.date.errors }}
+                </div>
+            {% endif %}
+        </div>
+ {% comment %} Time Field  {% endcomment %}
+        <div class="mb-4">
+            <label class="block text-gray-700">Time <span class="text-red-500">*</span></label>
+            <input type="time" name="time" value="{{ form.time.value|default:'' }}" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            {% if form.time.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.time.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% comment %} Location Field  {% endcomment %}
+        <div class="mb-4">
+            <label class="block text-gray-700">Location <span class="text-red-500">*</span></label>
+            <input type="text" name="location" value="{{ form.location.value|default:'' }}" placeholder="Enter event location" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            {% if form.location.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.location.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% comment %} Category Field  {% endcomment %}
+
+        <div class="mb-4">
+            <label class="block text-gray-700">Category <span class="text-red-500">*</span></label>
+            <select name="category" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <option value="" disabled selected>Select a category</option>
+                {% for value, label in form.category.field.choices %}
+                    <option value="{{ value }}" {% if form.category.value == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            {% if form.category.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                    {{ form.category.errors }}
+                </div>
+            {% endif %}
+        </div>
+      {% comment %} Buttons  {% endcomment %}
+
+        <div class="col-span-2 flex justify-end mt-6">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-300">
+                {% if form.instance.pk %}
+                    Update
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
+            <a href="{% url 'event_list' %}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded ml-2 transition duration-300">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %} 
+

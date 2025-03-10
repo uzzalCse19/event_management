@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-200 transition duration-300">
+    <nav class="bg-blue-600 text-white p-4 shadow-md fixed w-full top-0 z-50"> 
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="space-x-6">
+                <a href="{% url 'event_list' %}" class="hover:text-gray-300 transition duration-200">Events</a>
+                <a href="{% url 'category_list' %}" class="hover:text-gray-300 transition duration-200">Categories</a>
+                <a href="{% url 'participant_list' %}" class="hover:text-gray-300 transition duration-200">Participants</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'organizer_dashboard' %}" class="hover:text-gray-300 transition duration-200">Dashboard</a>
+                
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6 mt-16">  
+        {% block content %}{% endblock %}
+    </div>
+        <!-- Footer -->
+        <footer class="bg-blue-600 text-white text-center p-4 mt-10">
+            &copy; 2025 Event Management System | All Rights Reserved
+        </footer>
+        <script>
+            const toggle = document.getElementById('darkModeToggle');
+            toggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+            });
+        </script>
+    
+</body>
+</html>
+
+
+
+
+

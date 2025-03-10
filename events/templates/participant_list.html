@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Participants</h1>
+<div class="mb-4">
+    {% comment %} <a href="{% url 'create_participant' %}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"> {% endcomment %}
+        Create Participant
+    </a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for participant in participants %}
+    <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-bold">{{ participant.name }}</h2>
+        <p class="text-gray-600">{{ participant.email }}</p>
+        <p class="text-gray-600">Events: 
+            {% for event in participant.events.all %}
+                {{ event.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <div class="mt-4">
+            <a href="{% url 'update_participant' participant.pk %}" class="bg-blue-600 text-white px-4 py-2 rounded">Edit</a>
+            <a href="{% url 'delete_participant' participant.pk %}" class="bg-red-600 text-white px-4 py-2 rounded ml-2">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
