@@ -21,7 +21,5 @@ urlpatterns = [
     path('participants/<int:pk>/update/',views.update_participant,name='update_participant'),
     path('participants/<int:pk>/delete/',views.delete_participant,name='delete_participant'),
 
-
-
 ]
 
