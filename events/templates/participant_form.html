@@ -6,7 +6,7 @@
         {% if form.instance.pk %}
             ✏️ Update Participant
         {% else %}
-            🎉 Create Participant
+            {% comment %} 🎉 Create Participant {% endcomment %}
         {% endif %}
     </h1>
     <form method="post" class="space-y-4">
