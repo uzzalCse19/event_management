@@ -26,9 +26,15 @@ SECRET_KEY = 'django-insecure-pplq(kwff!i$sw&+d5h@0x*g+vt^t6+!-s0i6sr*oad2=hm#0z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS=['https://onrender.com','http://127.0.0.1:8000/events']
-CSRF_USER_MODEL='users.Customers'
+ALLOWED_HOSTS = ['event-management-1-ghy6.onrender.com', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://event-management-1-ghy6.onrender.com',
+    'http://127.0.0.1:8000'
+]
+
+AUTH_USER_MODEL = 'users.Customers'  # যদি Custom User Model থাকে
+
 
 
 # Application definition
